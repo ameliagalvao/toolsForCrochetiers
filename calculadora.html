@@ -1,0 +1,56 @@
+<div class="containerCalculadora">
+  <h1>
+    CALCULADORA DO CUSTO DA MÃO DE OBRA
+  </h1>
+  <p>
+    Insira as informações requisitadas e obtenha uma estimativa do custo da sua mão de obra.
+  </p>
+  <div class="tipoBloco">
+    <div class="tooltip"><span>ⓘ</span><span class="tooltiptext">Some o total de pontos de cada carreira para obter o total de pontos da receita (Não esqueça de contar os pontos das carreiras iguais)</span></div>
+    <label for="totalPontos">Total de Pontos da Receita:</label>
+    <input type="number" id="totalPontos" size="2" />
+  </div>
+  <div class="tipoBloco">
+    <div class="tooltip"><span>ⓘ</span><span class="tooltiptext">Insira aqui quanto você deseja ganhar por cada hora trabalhada</span></div>
+    <label for="horaDeTrabalho">Valor da sua hora de trabalho:</label>
+    <input type="number" id="horaDeTrabalho" size="2" />
+  </div>
+  <div class="tipoBloco">
+    <div class="tooltip"><span>ⓘ</span><span class="tooltiptext">Marque num cronômetro quantos pontos você faz num minuto com as mesmas linha e agulha que serão utilizadas no trabalho e insira esse valor aqui</span></div>
+    <label for="pontoMinuto">Quantidade de pontos que você faz em um minuto:</label>
+    <input type="number" id="pontoMinuto" size="2" />
+  </div>
+  <button type="submit" onclick="calculadoraDeMaoDeObra()">Calcular</button>
+  <div id="resultadoCalculadora"></div>
+  <div>
+function calculadoraDeMaoDeObra() {
+  let totalDePontos = parseInt(document.getElementById("totalPontos").value);
+  let valorHoraDeTrabalho = parseFloat(
+    document.getElementById("horaDeTrabalho").value
+  );
+  let pontosPorMinuto = parseInt(document.getElementById("pontoMinuto").value);
+
+  let totalMinutos = Math.round(totalDePontos / pontosPorMinuto);
+
+  let valorFinal;
+
+  if (totalMinutos / 60 >= 1) {
+    valorFinal = Math.round(totalMinutos / 60) * valorHoraDeTrabalho;
+  } else {
+    valorFinal = (totalMinutos / 60) * 60 * valorHoraDeTrabalho;
+  }
+
+  let elementoValorFinal = document.getElementById("resultadoCalculadora");
+
+  let resultadoCusto = "O custo da sua mão de obra é " + valorFinal + " reais";
+
+  if (isNaN(valorFinal)) {
+    elementoValorFinal.innerHTML =
+      "<p> Por favor, preencha todos os campos. </p>";
+  } else {
+    elementoValorFinal.innerHTML = resultadoCusto;
+  }
+}
+    <p>Desenvolvido por Amélia Galvão - <a href="https://www.miahandcrafter.com">Miigu by Mia</a></p>
+  </div>
+</div>
