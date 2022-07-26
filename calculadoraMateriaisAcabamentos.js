@@ -69,3 +69,12 @@ function custosExtra() {
     elementoResultadoPreco.innerHTML = resultadoPreco;
   }
 }
+
+function calculadoraCustosExtra() {
+  if (valoresDaCalculadora.length < 10) {
+    custosExtra();
+  } else {
+    valoresDaCalculadora.length = 0;
+    custosExtra();
+  }
+}
